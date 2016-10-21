@@ -47,19 +47,22 @@
       $("#questionDiv").html($(questionElement).html());
 
       $("#nextBtn").click(function(){
-        if(no == 51){
+        if(no == 9){
           $("#numberOfQuertion").html("答題結束！<br/>你的分數是<span style='color:red;'>"+score+"</span>分!");
           $("#questionDiv").html("");
+        }else if(no > 9){
+          location.reload();
+        }else{
+          no++;
+          clickFlag = 0;
+          $(".awsOption").css("background-color","");
+          $("#anwersDiv").html("");
+         
+          answerElement = answerArray[randonArray[no]];
+          questionElement = questionArray[randonArray[no]];
+          $("#numberOfQuertion").html("No."+(no+1));
+          $("#questionDiv").html($(questionElement).html());
         }
-        clickFlag = 0;
-        $(".awsOption").css("background-color","");
-        $("#anwersDiv").html("");
-        if(no <= 50){no++;}
-        answerElement = answerArray[randonArray[no]];
-        questionElement = questionArray[randonArray[no]];
-        $("#numberOfQuertion").html("No."+(no+1));
-        $("#questionDiv").html($(questionElement).html());
-
       });
 
       $(".awsOption").click(function(){
