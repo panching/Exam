@@ -1,6 +1,7 @@
   function getRandom(minNum, maxNum) {  //取得 minNum(最小值) ~ maxNum(最大值) 之間的亂數
     return Math.floor( Math.random() * (maxNum - minNum + 1) ) + minNum;
   }
+
   function getRandomArray(minNum, maxNum, n) 
       {  //隨機產生不重覆的n個數字
         var rdmArray = [n];   //儲存產生的陣列
@@ -47,11 +48,12 @@
       $("#questionDiv").html($(questionElement).html());
 
       $("#nextBtn").click(function(){
-        if(no == 9){
+        if(no >= 49){
           $("#numberOfQuertion").html("答題結束！<br/>你的分數是<span style='color:red;'>"+score+"</span>分!");
+
+          $(".w3-btn").css("display","none");
           $("#questionDiv").html("");
-        }else if(no > 9){
-          location.reload();
+          $("#anwersDiv").html("");
         }else{
           no++;
           clickFlag = 0;
