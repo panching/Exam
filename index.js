@@ -25,7 +25,7 @@
 
   $(document).ready(function(){
 
-      $("#Exam").hide();//隱藏題庫
+      //$("#Exam").hide();//隱藏題庫
 
       var no = 0;
       var clickFlag = 0;
@@ -41,11 +41,12 @@
 
       var answerElement = answerArray[randonArray[0]];
       var questionElement = questionArray[randonArray[0]];
+      var questionElementHtml = $(questionElement).html();
 
-      $("span[style='color: red']").css("display","none");//清空答案
+      //$("span[style='color: red']").css("display","none");//清空答案
       $("p>span span:nth-child(2)").before("<br/>");//換行
       $("#numberOfQuertion").html("No.1");
-      $("#questionDiv").html($(questionElement).html());
+      $("#questionDiv").html(questionElementHtml.substring(questionElementHtml.indexOf("】")+1));
 
       $("#nextBtn").click(function(){
         if(no >= 49){
@@ -63,8 +64,9 @@
          
           answerElement = answerArray[randonArray[no]];
           questionElement = questionArray[randonArray[no]];
+          questionElementHtml = $(questionElement).html();
           $("#numberOfQuertion").html("No."+(no+1));
-          $("#questionDiv").html($(questionElement).html());
+          $("#questionDiv").html(questionElementHtml.substring(questionElementHtml.indexOf("】")+1));
         }
       });
 
