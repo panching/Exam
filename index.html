@@ -1,28 +1,73 @@
 <!DOCTYPE html>
 <html>
-<title>W3.CSS Template</title>
+<title>Exam</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="index.css">
 <script src="jquery-3.1.1.js"></script>
 <script>  
-  $(document).ready(function(){
-    $("span[style='color: red']").html("");
+  function getRandom(minNum, maxNum) {  //取得 minNum(最小值) ~ maxNum(最大值) 之間的亂數
+    return Math.floor( Math.random() * (maxNum - minNum + 1) ) + minNum;
+  }
+  function getRandomArray(minNum, maxNum, n) 
+      {  //隨機產生不重覆的n個數字
+        var rdmArray = [n];   //儲存產生的陣列
+       
+        for(var i=0; i<n; i++) {
+          var rdm = 0;    //暫存的亂數
+       
+          do {
+            var exist = false;      //此亂數是否已存在
+            rdm = getRandom(minNum, maxNum);  //取得亂數
+       
+            //檢查亂數是否存在於陣列中，若存在則繼續回圈
+            if(rdmArray.indexOf(rdm) != -1) exist = true;
+       
+          } while (exist);  //產生沒出現過的亂數時離開迴圈
+       
+          rdmArray[i] = rdm;
+        }
+        return rdmArray;
+      };
 
-      $("p>span span:nth-child(2)").before("<br/>"); //第 2 個節點
+  $(document).ready(function(){
+
+      $("#Exam").hide();//隱藏題庫
+      $("span[style='color: red']").html("");//清空答案
+      $("p>span span:nth-child(2)").before("<br/>");//換行
+
+      var numberOfArray = 0;
       var questionArray = $("p");
       var answerArray = $("span[style='color: red']");
-      var answerElement = answerArray[0];
-      var questionElement = questionArray[22];
-      //alert($(questionElement).html());
-      $("#questionDiv").html($(questionElement).html())
-      $("#Exam").hide();
+      var randonArray = getRandomArray(0,answerArray.length,50);
+
+      var answerElement = answerArray[randonArray[0]];
+      var questionElement = questionArray[randonArray[0]];
+
+      $("#numberOfQuertion").html("No.1");
+      $("#questionDiv").html($(questionElement).html());
+
+      $("#nextBtn").click(function(){
+        if(numberOfArray<=50){numberOfArray++;}
+        answerElement = answerArray[randonArray[numberOfArray]];
+        questionElement = questionArray[randonArray[numberOfArray]];
+        $("#numberOfQuertion").html("No."+(numberOfArray+1));
+        $("#questionDiv").html($(questionElement).html());
+        if(numberOfArray>50){
+          $("#numberOfQuertion").html("答題結束！你的分數是");
+          $("#questionDiv").html("0分");
+        }
+      });
+
+      
   });
+
 </script>
-<body class="w3-content" style="max-width:1300px">
+<body class="w3-content" style="max-width:1300px;background-color:#000;">
 <div class="w3-row">
-  <div class=" w3-black w3-container w3-center" style="height:700px">
+  <div class=" w3-black w3-container w3-center" >
     <div class="w3-padding-30">
       <h1 id ="box">
+        <div id = "numberOfQuertion"></div>
         <div id = "questionDiv" style=""></div>
       </h1>
     </div>
@@ -31,8 +76,11 @@
       <a href="#" class="w3-btn w3-btn-block w3-hover-blue-grey w3-padding-16">B</a>
       <a href="#" class="w3-btn w3-btn-block w3-hover-blue-grey w3-padding-16">C</a>
       <a href="#" class="w3-btn w3-btn-block w3-hover-blue-grey w3-padding-16">D</a>
+      <a href="#" class="w3-btn w3-btn-block w3-hover-blue-grey w3-padding-16"><div id = "nextBtn">Next</div></a>
     </div>
   </div>
+
+
   <div id ="Exam">
     <p class="">
       <span style=''>【<span lang="" style='color: red'>A</span><span
@@ -164,7 +212,7 @@
     <p class="" style=': 8.15pt'>
       <span
         style='font-family: "新細明體", "serif"; mso-bidi-font-family: 新細明體;'>【</span><span
-        lang="" style='color: red;'>A</span><span
+        lang="" style='color: red'>A</span><span
         style='font-family: "新細明體", "serif"; mso-bidi-font-family: 新細明體;'>】紅耆其原植物性狀為</span><span
         lang="" style=''>(A)</span><span
         style='font-family: "新細明體", "serif"; mso-bidi-font-family: 新細明體;'>叢生</span><span
@@ -510,7 +558,7 @@
     <p class="">
       <span
         style='font-family: "新細明體", "serif"; mso-bidi-font-family: 新細明體;'>【</span><span
-        lang="" style='color: red;'>D</span><span
+        lang="" style='color: red'>D</span><span
         style='font-family: "新細明體", "serif"; mso-bidi-font-family: 新細明體;'>】下列何藥之命名是依進口地命名</span><span
         lang="" style=''>(A)</span><span
         style='font-family: "新細明體", "serif"; mso-bidi-font-family: 新細明體;'>白芷</span><span
@@ -1533,15 +1581,6 @@
         style='color: red'>A</span>】本草綱目<span lang="">:</span>能走血分，乃陽明衝任之藥的是：<span
         lang="">(A)</span>王不留行<span lang="">(B)</span>三七<span lang="">(C)</span>穿山甲<span
         lang="">(D)</span>黃耆<span lang=""><o:p></o:p></span></span>
-    </p>
-
-    <p class=""
-      style=': 0cm; : 0cm;: 0cm; : 37.2pt;: .0001pt;: 1.0pt; : exactly'>
-      <![if !vml]>
-      <img width=66 height=2 src="中藥中部班期末測驗題庫.files/image010.gif"
-        v:shapes="_x0000_s2050 _x0000_s2051">
-      <![endif]>
-      </span><span lang="" style='font-size: 1.0pt; mso-bidi-font-size: 12.0pt'><o:p></o:p></span>
     </p>
 
     <p class=""
