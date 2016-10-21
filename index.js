@@ -59,6 +59,7 @@
           clickFlag = 0;
           $(".awsOption").css("background-color","");
           $("#anwersDiv").html("");
+          $($"#nextBtn").css("background-color","");
          
           answerElement = answerArray[randonArray[no]];
           questionElement = questionArray[randonArray[no]];
